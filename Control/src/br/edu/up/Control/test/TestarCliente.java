@@ -19,7 +19,7 @@ public class TestarCliente {
 		
 		Cliente c = new Cliente();
 		c.setId(null);
-		c.setNome("Cleverson");
+		c.setNome("Eduardo");
 		
 		try {
 			new ClienteService().salvar(c);
@@ -27,12 +27,28 @@ public class TestarCliente {
 			e.printStackTrace();
 		}
 	
-		
 		assertEquals(true,c.getId() != null);
 		
 	}
 	
-	@Test
+	public void alterarCliente() {
+		
+	}
+	
+	public void excuirCliente() {
+		Cliente c = new Cliente();
+		
+		c.setId(1);
+		c.setNome("Eduardo");
+		
+		try {
+			new ClienteService().excluir(c);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void listarCliente() {
 		
 		List<Cliente> clientes = new ClienteDao().listar();

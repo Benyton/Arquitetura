@@ -19,12 +19,20 @@ public class ClienteDao implements Dao<Cliente> {
 	}
 	
 	public void excluir(Cliente c) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.remove(em.merge(c));
+		em.getTransaction().commit();
 
 	}
 	
 	public void alterar(Cliente c) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.merge(c);
+		em.getTransaction().commit();
 	}
 	
 	public List<Cliente> listar() {
