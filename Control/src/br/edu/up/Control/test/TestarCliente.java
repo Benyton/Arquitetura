@@ -14,7 +14,7 @@ import br.edu.up.Control.service.ServiceException;
 
 public class TestarCliente {
 	
-	@Test
+	
 	public void cadastrarCliente() {
 		
 		Cliente c = new Cliente();
@@ -30,9 +30,19 @@ public class TestarCliente {
 		assertEquals(true,c.getId() != null);
 		
 	}
-	
+	@Test
 	public void alterarCliente() {
+		Cliente c = new Cliente();
+		c.setId(2);
+		c.setNome("Pedro");
 		
+		try {
+			new ClienteService().alterar(c);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+	
+		assertEquals(true,c.getId() != null);
 	}
 	
 	public void excuirCliente() {

@@ -18,11 +18,19 @@ public class FuncionarioDao implements Dao<Funcionario> {
 	}
 	
 	public void excluir(Funcionario c) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.remove(em.merge(c));
+		em.getTransaction().commit();
 	}
 	
 	public void alterar(Funcionario c) {
+		EntityManager em = Conexao.getInstance();
 		
+		em.getTransaction().begin();
+		em.merge(c);
+		em.getTransaction().commit();
 	}
 	
 	public List<Funcionario> listar() {

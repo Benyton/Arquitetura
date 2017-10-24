@@ -2,6 +2,7 @@ package br.edu.up.Control.service;
 
 import br.edu.up.Control.DAO.Dao;
 import br.edu.up.Control.DAO.FactoryDao;
+import br.edu.up.Control.entidade.Cliente;
 import br.edu.up.Control.entidade.Funcionario;
 
 public class FuncionarioService {
@@ -21,5 +22,10 @@ public class FuncionarioService {
 	public void alterar (Funcionario c) throws ServiceException {
 		Dao<Funcionario> FuncionarioDao = FactoryDao.createFuncionarioDao();
 		FuncionarioDao.alterar(c);
+	}
+	
+	public void excluir (Funcionario c) throws ServiceException {
+		Dao<Funcionario> ProdutoDao = FactoryDao.createFuncionarioDao();
+		ProdutoDao.excluir(c);
 	}
 }
