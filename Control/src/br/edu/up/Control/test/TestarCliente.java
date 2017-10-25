@@ -4,20 +4,25 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.After;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.edu.up.Control.DAO.ClienteDao;
+import br.edu.up.Control.DAO.FactoryDao;
 import br.edu.up.Control.entidade.Cliente;
 import br.edu.up.Control.service.ClienteService;
 import br.edu.up.Control.service.ServiceException;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestarCliente {
 	
+	static Cliente c = new Cliente();
 	
-	public void cadastrarCliente() {
+	@Test
+	public void testAcadastrarCliente() {
 		
-		Cliente c = new Cliente();
 		c.setId(null);
 		c.setNome("Eduardo");
 		
@@ -30,10 +35,10 @@ public class TestarCliente {
 		assertEquals(true,c.getId() != null);
 		
 	}
+	
 	@Test
-	public void alterarCliente() {
-		Cliente c = new Cliente();
-		c.setId(2);
+	public void testBalterarCliente() {
+//		
 		c.setNome("Pedro");
 		
 		try {
@@ -45,21 +50,22 @@ public class TestarCliente {
 		assertEquals(true,c.getId() != null);
 	}
 	
-	public void excuirCliente() {
-		Cliente c = new Cliente();
-		
-		c.setId(1);
-		c.setNome("Eduardo");
+	@Test
+	public void testDexcuirCliente() {
 		
 		try {
 			new ClienteService().excluir(c);
+			
+			c = FactoryDao.createClienteDao().buscarPorId(c.getId());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+		
+		assertEquals(true, c == null);
 	}
 	
-	
-	public void listarCliente() {
+	@Test
+	public void testClistarCliente() {
 		
 		List<Cliente> clientes = new ClienteDao().listar();
 

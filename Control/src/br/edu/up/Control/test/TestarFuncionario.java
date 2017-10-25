@@ -4,23 +4,26 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
+import br.edu.up.Control.DAO.FactoryDao;
 import br.edu.up.Control.DAO.FuncionarioDao;
-import br.edu.up.Control.entidade.Cliente;
 import br.edu.up.Control.entidade.Funcionario;
-import br.edu.up.Control.service.ClienteService;
 import br.edu.up.Control.service.FuncionarioService;
 import br.edu.up.Control.service.ServiceException;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestarFuncionario {
 
+	static Funcionario c = new Funcionario();
 	
-	public void cadastrarFuncionario() {
+	@Test
+	public void testAcadastrarFuncionario() {
 		
-		Funcionario c = new Funcionario();
 		c.setId(null);
-		c.setNome("Rodrigo");
+		c.setNome("Ronaldo");
 		
 		try {
 			new FuncionarioService().salvar(c);
@@ -32,11 +35,10 @@ public class TestarFuncionario {
 		
 	}
 	
-	
-	public void alterarFuncionario() {
-		Funcionario c = new Funcionario();
-		c.setId(2);
-		c.setNome("Pedro");
+	@Test
+	public void testBalterarFuncionario() {
+		
+		c.setNome("Victor");
 		
 		try {
 			new FuncionarioService().alterar(c);
@@ -47,20 +49,22 @@ public class TestarFuncionario {
 		assertEquals(true,c.getId() != null);
 	}
 	
-	public void excuirCliente() {
-		Funcionario c = new Funcionario();
-		
-		c.setId(1);
-		c.setNome("Rodrigo");
-		
+	@Test
+	public void testDexcuirFuncionario() {
+
 		try {
 			new FuncionarioService().excluir(c);
+			
+			c = FactoryDao.createFuncionarioDao().buscarPorId(c.getId());
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
+		
+		assertEquals(true, c == null);
 	}
+	
 	@Test
-	public void listarFuncionario() {
+	public void testClistarFuncionario() {
 		
 		List<Funcionario> funcionarios = new FuncionarioDao().listar();
 

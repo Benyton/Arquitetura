@@ -4,21 +4,23 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.edu.up.Control.DAO.ProdutoDao;
-import br.edu.up.Control.entidade.Cliente;
 import br.edu.up.Control.entidade.Produto;
-import br.edu.up.Control.service.ClienteService;
 import br.edu.up.Control.service.ProdutoService;
 import br.edu.up.Control.service.ServiceException;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestarProduto {
+	
+	static Produto c = new Produto();
 	
 	@Test
 	public void cadastrarProduto() {
 		
-		Produto c = new Produto();
 		c.setId(null);
 		c.setNome("Processador");
 		c.setMarca("AMD");
@@ -28,15 +30,14 @@ public class TestarProduto {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-	
-		
+
 		assertEquals(true,c.getId() != null);
 		
 	}
 	
-	
+	@Test
 	public void alterarProduto() {
-		Produto c = new Produto();
+		
 		c.setId(2);
 		c.setNome("Processador");
 		c.setMarca("INTEL");
@@ -50,8 +51,8 @@ public class TestarProduto {
 		assertEquals(true,c.getId() != null);
 	}
 	
-	public void excuirProduto() {
-		Produto c = new Produto();
+	@Test
+	public void excuirProduto() {	
 		
 		c.setId(1);
 		c.setNome("Processador");
