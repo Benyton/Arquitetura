@@ -24,7 +24,6 @@ public class ClienteDao implements Dao<Cliente> {
 		em.getTransaction().begin();
 		em.remove(em.merge(c));
 		em.getTransaction().commit();
-
 	}
 	
 	public void alterar(Cliente c) {

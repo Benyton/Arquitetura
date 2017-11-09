@@ -1,7 +1,5 @@
 package br.edu.up.Control.rest;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.edu.up.Control.DAO.ClienteDao;
-import br.edu.up.Control.DAO.FactoryDao;
 import br.edu.up.Control.entidade.Cliente;
 import br.edu.up.Control.service.ClienteService;
 import br.edu.up.Control.service.ServiceException;
-
 
 @Path("/detalhecliente")
 public class ClienteRest {
